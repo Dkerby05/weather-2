@@ -1,0 +1,41 @@
+import java.util.Scanner;
+
+public class WeatherDataTracker {
+    public static void main(String[] args) {
+        // 2D array to store temperature data for 3 cities over 7 days.
+        // Each row corresponds to a city, and each column corresponds to a day's temperature.
+        double[][] temperatures = {
+            {30.5, 32.0, 31.0, 29.5, 30.0, 33.5, 34.0},  // City 1 temperatures for 7 days
+            {22.0, 23.5, 21.0, 24.0, 25.5, 26.0, 27.0},  // City 2 temperatures for 7 days
+            {15.0, 16.5, 17.0, 16.0, 18.0, 19.5, 20.0}   // City 3 temperatures for 7 days
+        };
+        
+        // Iterate through each city (each row of the 2D array)
+        for (int cityIndex = 0; cityIndex < temperatures.length; cityIndex++) {
+            // Extract the temperature data for the current city (row)
+            double[] cityTemps = temperatures[cityIndex];
+            
+            // Initialize variables to calculate the total temperature and the highest temperature
+            double totalTemp = 0;
+            double highestTemp = cityTemps[0];  // Start with the first day's temperature
+            
+            // Iterate through each day's temperature to calculate the total and find the highest temperature
+            for (int day = 0; day < cityTemps.length; day++) {
+                totalTemp += cityTemps[day];  // Add the day's temperature to the total
+                
+                // Check if the current day's temperature is higher than the highest recorded so far
+                if (cityTemps[day] > highestTemp) {
+                    highestTemp = cityTemps[day];
+                }
+            }
+            
+            // Calculate the average temperature for the current city
+            double averageTemp = totalTemp / cityTemps.length;
+            
+            // Output the results for the current city
+            System.out.printf("City %d:\n", cityIndex + 1);  // Display the city number
+            System.out.printf("  Average Temperature: %.2f°C\n", averageTemp);  // Display the average temperature
+            System.out.printf("  Highest Temperature: %.2f°C\n\n", highestTemp);  // Display the highest temperature
+        }
+    }
+}
